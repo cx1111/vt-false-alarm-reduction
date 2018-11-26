@@ -9,7 +9,7 @@ from wfdb import processing
 
 
 
-def get_beats(sig, beat_inds, prop_left = 1/5, rr_limits=(75, 500),
+def get_beats(sig, beat_inds, prop_left=0.3, rr_limits=(75, 500),
               view=False):
     """
     Given a signal and beat locations, extract the beats.
@@ -68,7 +68,7 @@ def get_beats(sig, beat_inds, prop_left = 1/5, rr_limits=(75, 500),
         if  not rr_limits[0] < rr_next < rr_limits[1]:
             rr_next = mean_rr
 
-        left_left = int(rr_prev * prop_left)
+        len_left = int(rr_prev * prop_left)
         len_right = int(rr_next * prop_right)
 
         # Skip beats too close to boundaries
